@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DigitalGuru's Daily Check-In Widget</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<div class="builder-ui">
+  <div class="widget-header">
+    DigitalGuru's Daily Check-In Widget
+  </div>
+
+  <div id="themeOptions" class="theme-options hidden">
+    <div class="theme-circle pink" data-theme="pink"></div>
+    <div class="theme-circle green" data-theme="green"></div>
+    <div class="theme-circle beige" data-theme="beige"></div>
+    <div class="theme-circle blue" data-theme="blue"></div>
+  </div>
+
+  <div id="fontOptions" class="theme-options hidden">
+    <div class="font-option" data-font="default">default</div>
+    <div class="font-option" data-font="serif">serif</div>
+    <div class="font-option" data-font="mono">mono</div>
+  </div>
+
+  <div id="usageTip" class="usage-tip">
+    Welcome to your Notion widget by DigitalGuru!<br>
+    write a tiny daily check-in<br>
+    - customize theme + font<br>
+    - copy your embed link<br>
+    - paste into Notion ✧
+  </div>
+
+  <div class="top-left-controls">
+    <div id="themeToggle" class="btn theme-toggle-btn"></div>
+    <div id="fontToggle" class="btn">Aa</div>
+  </div>
+
+  <div class="setup-area">
+    <button id="copyLinkBtn" class="copy-btn">
+      copy my embed Notion link .ᐟ.ᐟ
+    </button>
+
+    <p id="copyMessage" class="copy-message hidden">
+      copied! paste into notion .ᐟ.ᐟ
+    </p>
+  </div>
+
+  <div class="footer-links">
+    <a href="https://stan.store/digitalforguru" target="_blank" class="footer-link">
+      shop digitalguru
+    </a>
+    <span class="divider">•</span>
+    <a href="https://tiktok.com/@digitaluru" target="_blank" class="footer-link">
+      socials
+    </a>
+  </div>
+</div>
+
+<div id="checkinWidget" class="widget pink">
+  <div class="widget-header-title">daily check-in ✧</div>
+
+  <p class="checkin-prompt">what do you need today?</p>
+
+  <textarea id="checkinText" class="checkin-textarea" placeholder="type your little check-in here..."></textarea>
+
+  <button id="saveCheckinBtn" class="save-btn">save ✧</button>
+
+  <p id="saveMessage" class="save-message hidden">saved ✧</p>
+</div>
+
+<script type="module" src="checkin.js"></script>
+
+</body>
+</html>
