@@ -57,6 +57,18 @@ checkinPrompt.textContent = todaysPrompt;
   const fontOptions = document.getElementById("fontOptions");
   const fontChoices = document.querySelectorAll(".font-option");
 
+  const viewEntriesBtn =
+  document.getElementById("viewEntriesBtn");
+  
+  const entriesPopup =
+  document.getElementById("entriesPopup");
+  
+  const entriesContainer =
+  document.getElementById("entriesContainer");
+  
+  const closeEntriesBtn =
+  document.getElementById("closeEntriesBtn");
+
   const copyBtn = document.getElementById("copyLinkBtn");
   const copyMsg = document.getElementById("copyMessage");
 
@@ -110,7 +122,9 @@ checkinPrompt.textContent = todaysPrompt;
       return;
     }
 
-    const saved = data?.data?.[todayKey()] || "";
+    const saved =
+      data?.data?.[todayKey()]?.text || "";
+    
     textarea.value = saved;
   }
 
@@ -124,7 +138,10 @@ checkinPrompt.textContent = todaysPrompt;
       .maybeSingle();
 
     const currentData = data?.data || {};
-    currentData[todayKey()] = text;
+    currentData[todayKey()] = {
+      prompt: todaysPrompt,
+      text
+    };
 
     const { error } = await supabase.from("mood_logs").upsert({
       id: widgetId,
@@ -172,6 +189,49 @@ checkinPrompt.textContent = todaysPrompt;
       fontOptions.classList.add("hidden");
     });
   });
+
+
+  viewEntriesBtn?.addEventListener("click", async () => {
+  const { data } = await supabase
+    .from("mood_logs")
+    .select("data")
+    .eq("id", widgetId)
+    .maybeSingle();
+
+  const entries = data?.data || {};
+
+  entriesContainer.innerHTML = "";
+
+  Object.entries(entries)
+    .reverse()
+    .forEach(([date, entry]) => {
+      if (!entry?.text) return;
+
+      const card = document.createElement("div");
+      card.className = "entry-card";
+
+      card.innerHTML = `
+        <div class="entry-date">${date}</div>
+
+        <div class="entry-prompt">
+          ${entry.prompt || ""}
+        </div>
+
+        <div class="entry-text">
+          ${entry.text}
+        </div>
+      `;
+
+      entriesContainer.appendChild(card);
+    });
+
+  entriesPopup.classList.remove("hidden");
+});
+
+closeEntriesBtn?.addEventListener("click", () => {
+  entriesPopup.classList.add("hidden");
+});
+
 
   saveBtn?.addEventListener("click", saveCheckin);
 
