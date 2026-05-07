@@ -10,6 +10,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const textarea = document.getElementById("checkinText");
   const saveBtn = document.getElementById("saveCheckinBtn");
   const saveMessage = document.getElementById("saveMessage");
+  const checkinPrompt = document.getElementById("checkinPrompt");
+
+const prompts = [
+  "what’s on your mind?",
+  "what does your dream life look like?",
+  "what is your ideal day this week?",
+  "what are 3 things you're grateful for?",
+  "what energy are you bringing into today?",
+  "how have you changed in the last 5 years?",
+  "what are you avoiding lately?",
+  "what are you grateful for today?",
+  "what’s been on repeat in your head?",
+  "describe today in one sentence...",
+  "if failing wasn't possible, what would you do?",
+  "if someone else described you what would they say?",
+  "write a letter to your future self...",
+  "what is your biggest fear?",
+  "what is going well in your life and why?",
+  "what are 5 things that make you happy?",
+  "my favorite memory is...",
+  "discussing my opinion on social media...",
+  "when is the last time you cried? why?",
+  "describe your childhood and how it shaped you :)",
+  "what is one thing you wish you could tell yourself 5 years ago?",
+  "my love language and why...",
+  "how did you sleep?",
+  "something i am proud of myself for...",
+  "how do i want to feel at the end of the day today?",
+  "last night i dreamt about...",
+  "what would make today great?",
+  "one thing i learned yesterday...",
+  "one positive thing to focus on today:"
+];
+
+const todaysPrompt =
+  prompts[new Date().getDate() % prompts.length];
+
+checkinPrompt.textContent = todaysPrompt;
 
   const themeToggle = document.getElementById("themeToggle");
   const themeOptions = document.getElementById("themeOptions");
