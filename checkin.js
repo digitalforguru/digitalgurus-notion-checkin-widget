@@ -93,7 +93,7 @@ checkinPrompt.textContent = todaysPrompt;
   }
 
   function applyTheme(theme) {
-    widget.classList.remove("pink", "green", "beige", "blue");
+    widget.classList.remove("pink", "green", "beige", "blue", "black", "white");
     widget.classList.add(theme);
     state.theme = theme;
   }
